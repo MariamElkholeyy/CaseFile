@@ -1,7 +1,13 @@
+
 <div align="center">
 
+    
 # CASEFILE
+
+<img align="center" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="300" height="300" hspace="10">
+
 ### The Swapped Scarab
+
 **Investigate. Verify. Decide.**
 
 An Egyptian museum mystery powered by retrieval-augmented generation.
@@ -16,18 +22,31 @@ ITI Level 2 Graduation Project · Mariam Wael Elkholey · 2026
 
 > **Three trays. One conflicting record.** An exhibition is about to open at the fictional Lantern Museum in Cairo. The objects and their paperwork disagree. Your task is to discover what happened—and show which sources support your conclusion.
 
+<img align="right" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
+</br>
+</br>
 Casefile turns document research into a guided investigation. Ask an assistant about the case, inspect its cited passages, compare museum records with authentic scholarship, and build a theory before unlocking follow-up evidence.
-<img width="254" height="254" alt="Codex Image Sep 16, 2026, 12_12_19 AM" src="https://github.com/user-attachments/assets/321e50b9-fb0a-482d-8a7a-7d25b2c9fd2e" />
 
+</br>
+</br>
 The mystery and its characters are fictional. The archaeological reference is real. The system keeps those roles distinct: historical scholarship helps interpret objects; incident records establish what happened in the fictional case.
+
+<br clear="both">
 
 ## Watch the walkthrough
 
 [![Play the Casefile walkthrough](docs/screenshots/opening.png)](docs/casefile-demo.mp4)
 
-**[Watch or download the 3:03 captioned demo](docs/casefile-demo.mp4)** 
+<img align="right" src="frontend/assets/duck-thinking.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
+</br>
+</br>
+</br>
+**[Watch or download the 3:03 captioned demo](docs/casefile-demo.mp4)** — a recorded local walkthrough covering the briefing, a live research response, source inspection, notebook, follow-up evidence and final findings. 
+</br>
+</br>
+The MP4 is included in this repository. Depending on your viewer, the link may download it instead of playing inline.
 
-
+<br clear="both">
 
 ## What you can do
 
@@ -63,7 +82,11 @@ The mystery and its characters are fictional. The archaeological reference is re
 
 ![Live answer linking tray P to seal 731 with a citation](docs/screenshots/answer.png)
 
+<img align="right" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="100" height="100" hspace="14">
+
 The assistant's answer is the start of the investigation. Open a cited passage to check the claim against its source.
+
+<br clear="both">
 
 | Inspect the source | Browse the records |
 | --- | --- |
@@ -99,7 +122,8 @@ These two user-supplied screenshots show an earlier interface version.
 
 ## Presentation and visual direction
 
-Gold, sandstone, museum architecture and a duck guide give the project its visual identity. These are **AI-generated presentation illustrations**, not screenshots, historical photographs or source documents. Some illustrative names, dates, tray labels and objects differ from the playable case; the application records remain authoritative.
+
+<br clear="both">
 
 | The mystery | Research through evidence |
 | --- | --- |
@@ -107,15 +131,15 @@ Gold, sandstone, museum architecture and a duck guide give the project its visua
 | ![Presentation illustration of conflicting records](frontend/assets/briefing-records.png) | ![Presentation overview of fictional and authentic data](docs/presentation/authentic-foundation.png) |
 
 <details>
-<summary>View the presentation journey and duck mascot</summary>
+<summary>View the presentation journey</summary>
 
 ![Illustrated investigation journey](docs/presentation/investigation-journey.png)
-
-<img src="frontend/assets/duck-guide.png" alt="Egyptian duck holding a scroll" width="210"> <img src="frontend/assets/duck-thinking.png" alt="Thinking Egyptian duck guide" width="210">
 
 </details>
 
 ## How the RAG system works
+
+<img align="right" src="frontend/assets/duck-thinking.png" alt="Duck guide thinking through the RAG workflow" width="300" height="300" hspace="14">
 
 1. **Prepare:** load ten fictional records and two authentic scholarly extracts, retaining document IDs, pages and unlock stages.
 2. **Index:** split text into 170-word chunks with 35-word overlap, create 384-dimensional MiniLM embeddings and persist them in Chroma.
@@ -123,6 +147,8 @@ Gold, sandstone, museum architecture and a duck guide give the project its visua
 4. **Add context when needed:** intended-destination questions can receive up to two additional inspection/reference passages beyond the five primary results.
 5. **Generate:** send the question and retrieved context to the selected Ollama or Groq model with instructions to distinguish facts, claims and uncertainty.
 6. **Validate and inspect:** validate citation IDs and return the answer with passages. If generation fails, show explicitly labeled retrieval-only evidence.
+
+<br clear="both">
 
 ```mermaid
 flowchart LR
@@ -138,9 +164,14 @@ flowchart LR
     A --> UI
 ```
 
+<img align="right" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
+
 The case solution and evaluation answers are not ingested. Locked follow-up documents remain excluded from retrieval, including context-expansion queries.
 
+<br clear="both">
+
 ## Technology
+</br>
 
 | Layer | Implementation |
 | --- | --- |
@@ -154,23 +185,34 @@ The case solution and evaluation answers are not ingested. Locked follow-up docu
 | Player progress | SQLite with token-based investigation sessions |
 | Verification | pytest/TestClient, retrieval evaluation and reviewed model outputs |
 
-The published configuration defaults to **local Ollama**. The private demo configuration uses **Groq**. Results from one provider must not be attributed to the other. The 3D scarab is illustrative graphics, not computer vision; no fine-tuning is claimed.
+<br clear="both">
 
 ## Data and provenance
 
 | Collection | Size | Role |
 | --- | --- | --- |
 | Fictional incident records | 10 documents | Inspection, packing, dispatch, receiving, correspondence, register changes and follow-up evidence. |
-| Authentic scholarship | 2 page extracts | Historical context for distinguishing scarab types and physical features. |
+| Authentic Book |  page extracts | Historical context for distinguishing scarab types and physical features. |
 | Indexed corpus | 28 chunks in the evaluated build | Passage-level retrieval with source metadata. |
 
-**Reference:** Emily Teeter, with T. G. Wilfong (2003), *Scarabs, Scaraboids, Seals, and Seal Impressions from Medinet Habu*, University of Chicago. Printed pages 122–123 correspond to PDF pages 146–147.
+</br>
+</br>
+<img align="right" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
 
+</br>
+</br>
+
+**Reference:** Emily Teeter, with T. G. Wilfong (2003), *Scarabs, Scaraboids, Seals, and Seal Impressions from Medinet Habu*, University of Chicago.
 [Open the original publisher PDF](https://isac.uchicago.edu/sites/default/files/uploads/shared/docs/OIP118.pdf).
 
+</br>
+</br>
 This source does not report the fictional incident or authenticate the case objects. Public source packages exclude the copyrighted extracts and generated vector-store content; prepare them locally from the original PDF using the commands below.
 
+<br clear="both">
+
 ## Setup
+
 Use Python 3.12. From the project root:
 ```bash
 python3 -m venv .venv
@@ -194,10 +236,10 @@ streamlit run frontend/app.py
 ```
 Streamlit reads `frontend/.env`; the custom frontend uses same-origin relative API paths. No backend URL is hard-coded in the API client.
 
-## Notebook
-Run `notebooks/rag_pipeline.ipynb` from a fresh kernel. It inspects the corpus, explains 170-word chunks and 35-word overlap, builds MiniLM embeddings, persists Chroma and demonstrates retrieval and prompting. Do not run its index rebuild while the application is using the same store. The evaluation is explicit about model failures and requires claim-level review.
+<br clear="both">
 
 ## Environment variables
+
 | Variable | Purpose |
 |---|---|
 | OLLAMA_HOST | Defaults to http://127.0.0.1:11434 |
@@ -208,9 +250,14 @@ Run `notebooks/rag_pipeline.ipynb` from a fresh kernel. It inspects the corpus, 
 | FRONTEND_ORIGIN | Allowed CORS origin |
 | API_BASE_URL | Streamlit backend address, from frontend/.env |
 
-Local Ollama runs on CPU on the Intel Mac. Selecting Groq sends questions and retrieved passages to that service. There is no automatic cloud fallback. See [Groq setup](docs/GROQ_SETUP.md).
+<img align="right" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
+
+Local Ollama runs on CPU on the Intel Mac. Selecting Groq sends questions and retrieved passages to that service. There is no automatic cloud fallback. 
+
+<br clear="both">
 
 ## API
+
 Create a session and copy its token:
 ```bash
 curl -X POST http://127.0.0.1:8000/sessions
@@ -220,7 +267,12 @@ curl -X POST http://127.0.0.1:8000/query \
   -H 'Authorization: Bearer REPLACE_WITH_SESSION_TOKEN' \
   -d '{"question":"Which seal was placed on tray P?"}'
 ```
+
+<img align="right" src="frontend/assets/duck-thinking.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
+
 Response contains `answer`, `sources`, `evidence` and `mode`. `evidence_only` means retrieval results are shown without an accepted generated answer. Citation validation checks IDs; it does not prove claim support.
+
+<br clear="both">
 
 | Endpoint | Purpose |
 |---|---|
@@ -232,7 +284,11 @@ Response contains `answer`, `sources`, `evidence` and `mode`. `evidence_only` me
 | POST /unlock | Initial theory of at least 40 characters unlocks E09/E10 |
 | POST /submit | Check structured selections; save written reasoning |
 
+<img align="right" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
+
 The initial-theory gate checks length, not correctness. Final score evaluates structured choices and reference selection; written reasoning is saved for review. Session tokens live in browser local storage. This classroom prototype is not hardened for unrestricted public hosting.
+
+<br clear="both">
 
 ## Quality and evaluation
 
@@ -244,16 +300,25 @@ The initial-theory gate checks length, not correctness. Final score evaluates st
 | Hosted answer checks | Targeted regressions improved several previously failing answers | Small reviewed sample; not a general accuracy score. |
 | Local model | Retained for the local-model workflow; errors remain documented | Hosted improvements do not establish local-model quality. |
 
+<img align="right" src="frontend/assets/duck-thinking.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
+
 Read the [RAG quality report](docs/RAG_QUALITY_UPDATE.md) and [reviewed local evaluation](evaluation/RESULTS.md) for methodology, failure cases and limits.
+
+<br clear="both">
 
 ```bash
 python -m pytest backend/tests -q
 python scripts/evaluate.py
 # Optional live-generation evaluation:
+
 python scripts/evaluate.py --generate
 ```
 
+<img align="right" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
+
 Evaluation commands overwrite the current result file; preserve reviewed results first. Citation-ID validation checks that references exist in retrieved context—it does not prove that every claim is supported. An earlier evaluator's authored-answer substitution was removed; historical substituted outputs are not valid live-generation evidence.
+
+<br clear="both">
 
 ## Scope and limitations
 
@@ -276,6 +341,7 @@ Evaluation commands overwrite the current result file; preserve reviewed results
 | [Checkpoints](docs/checkpoints/) | Development decisions, completed work and remaining tasks. |
 
 ## Structure
+
 ```text
 backend/app/         API, settings, schemas, retrieval, generation, session storage
 backend/data/        case records; locally prepared references and vectors
@@ -288,6 +354,7 @@ docs/                schema, presentation, walkthrough, checkpoints
 ```
 
 ## Docker (optional, not validated here)
+
 Build from the project root after preparing local data:
 ```bash
 docker build -f backend/Dockerfile -t casefile .
@@ -297,4 +364,8 @@ The host Ollama service must be reachable from the container. Native local setup
 
 ## Credits
 
+<img align="right" src="frontend/assets/duck-thinking.png" alt="Casefile duck guide" width="100" height="100" hspace="14">
+
 **Mariam Wael Elkholey** — ITI Level 2 graduation project, 2026.
+
+<br clear="both">
