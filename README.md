@@ -6,7 +6,7 @@
 
 An Egyptian museum mystery powered by retrieval-augmented generation.
 
-ITI Level 2 Graduation Project · Mariam Wael Elkholy · 2026
+ITI Level 2 Graduation Project · Mariam Wael Elkholey · 2026
 
 [Watch the demo](docs/casefile-demo.mp4) · [Explore the screenshots](#inside-the-investigation) · [Run locally](#setup) · [RAG evaluation](#quality-and-evaluation)
 
@@ -17,6 +17,7 @@ ITI Level 2 Graduation Project · Mariam Wael Elkholy · 2026
 > **Three trays. One conflicting record.** An exhibition is about to open at the fictional Lantern Museum in Cairo. The objects and their paperwork disagree. Your task is to discover what happened—and show which sources support your conclusion.
 
 Casefile turns document research into a guided investigation. Ask an assistant about the case, inspect its cited passages, compare museum records with authentic scholarship, and build a theory before unlocking follow-up evidence.
+<img width="254" height="254" alt="Codex Image Sep 16, 2026, 12_12_19 AM" src="https://github.com/user-attachments/assets/321e50b9-fb0a-482d-8a7a-7d25b2c9fd2e" />
 
 The mystery and its characters are fictional. The archaeological reference is real. The system keeps those roles distinct: historical scholarship helps interpret objects; incident records establish what happened in the fictional case.
 
@@ -24,9 +25,9 @@ The mystery and its characters are fictional. The archaeological reference is re
 
 [![Play the Casefile walkthrough](docs/screenshots/opening.png)](docs/casefile-demo.mp4)
 
-**[Watch or download the 3:03 captioned demo](docs/casefile-demo.mp4)** — a recorded local walkthrough covering the briefing, a live research response, source inspection, notebook, follow-up evidence and final findings. Captions explain the actions; there is no voice narration. The final part reveals the case outcome.
+**[Watch or download the 3:03 captioned demo](docs/casefile-demo.mp4)** 
 
-The MP4 is included in this repository. Depending on your viewer, the link may download it instead of playing inline.
+
 
 ## What you can do
 
@@ -296,6 +297,4 @@ The host Ollama service must be reachable from the container. Native local setup
 
 ## Credits
 
-**Mariam Wael Elkholy** — ITI Level 2 graduation project, 2026.
-
-Developed with AI-assisted coding and generated visual assets. Archaeological scholarship is attributed above; fictional evidence is authored for this investigation. Three.js is included with its vendor license. Publication content and third-party assets retain their respective rights; inclusion here does not grant a blanket redistribution license.
+**Mariam Wael Elkholey** — ITI Level 2 graduation project, 2026.
