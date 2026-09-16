@@ -1,0 +1,179 @@
+[
+  {
+    "id": "Q01",
+    "question": "What was observed in tray P?",
+    "expected_sources": [
+      "E02"
+    ],
+    "expected_answer": "Dark stone, 6.4 cm, uninscribed, unpierced, crescent chip, LM-101.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q02",
+    "question": "Which tray matches the heart scarab request?",
+    "expected_sources": [
+      "E02",
+      "E03",
+      "REF:p122"
+    ],
+    "expected_answer": "P; physical description fits the reference distinction.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q03",
+    "question": "Which group matches the funerary assemblage?",
+    "expected_sources": [
+      "E02",
+      "E03",
+      "REF:p122"
+    ],
+    "expected_answer": "Q; pierced body and separate wings support the match.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q04",
+    "question": "What might the four figures represent?",
+    "expected_sources": [
+      "E02",
+      "REF:p123"
+    ],
+    "expected_answer": "The Sons of Horus; association supports but does not uniquely prove identity.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q05",
+    "question": "Does blue-green color prove an object is ancient?",
+    "expected_sources": [
+      "E02",
+      "REFERENCE_DESK"
+    ],
+    "expected_answer": "No; the collection provides no scientific authentication.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q06",
+    "question": "Which seal was placed on tray P?",
+    "expected_sources": [
+      "E04"
+    ],
+    "expected_answer": "731.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q07",
+    "question": "Where should seal 731 have gone?",
+    "expected_sources": [
+      "E02",
+      "E03",
+      "E04",
+      "REF:p122"
+    ],
+    "expected_answer": "D-1.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q08",
+    "question": "Where did seal 731 arrive?",
+    "expected_sources": [
+      "E05",
+      "E06"
+    ],
+    "expected_answer": "E-1, then cabinet E-C4.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q09",
+    "question": "What was received at the study room?",
+    "expected_sources": [
+      "E06"
+    ],
+    "expected_answer": "COPY-03, seal 733, placed S-C2.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q10",
+    "question": "Who performed the handovers?",
+    "expected_sources": [
+      "E05",
+      "E06"
+    ],
+    "expected_answer": "Nadia, supported by signed dispatch and receiving records.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q11",
+    "question": "When was the discrepancy flagged?",
+    "expected_sources": [
+      "E07"
+    ],
+    "expected_answer": "14:05 on Oct 14.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q12",
+    "question": "What changed at 14:26?",
+    "expected_sources": [
+      "E08"
+    ],
+    "expected_answer": "Destinations rewritten to intended locations and transfers claimed complete.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q13",
+    "question": "Did the record edit itself move the objects?",
+    "expected_sources": [
+      "E07",
+      "E08",
+      "E10"
+    ],
+    "expected_answer": "No; receiving locations persisted and recheck confirms them.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q14",
+    "question": "Where is LM-101 at the latest check?",
+    "expected_sources": [
+      "E10"
+    ],
+    "expected_answer": "E-C4 as of Oct 15 09:15.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q15",
+    "question": "Was dispatch error the same as deliberate misreporting?",
+    "expected_sources": [
+      "E07",
+      "E08",
+      "E09"
+    ],
+    "expected_answer": "No; wrong handover was acknowledged as a mistake, later false completion was knowingly entered.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q16",
+    "question": "What is the market value of LM-101?",
+    "expected_sources": [
+      "E02"
+    ],
+    "expected_answer": "Not provided; do not invent a value.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q17",
+    "question": "Which real museum experienced this incident?",
+    "expected_sources": [
+      "E01"
+    ],
+    "expected_answer": "None; fictional Lantern Museum.",
+    "status": "authored_not_run"
+  },
+  {
+    "id": "Q18",
+    "question": "Were the objects stolen?",
+    "expected_sources": [
+      "E10"
+    ],
+    "expected_answer": "No theft is established; all groups accounted for. Do not generalize beyond evidence.",
+    "status": "authored_not_run"
+  }
+]

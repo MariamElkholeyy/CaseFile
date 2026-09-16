@@ -1,0 +1,21 @@
+import * as THREE from './vendor/three.module.js';
+// Original decorative geometry: never an evidence reconstruction.
+export function mountScarab(host){
+ let renderer;try{renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:'low-power'});}catch{host.classList.add('no-webgl');return ()=>{};}
+ host.classList.add('has-webgl');host.prepend(renderer.domElement);renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0,0);renderer.outputColorSpace=THREE.SRGBColorSpace;
+ const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,1,.1,50);camera.position.set(0,0,7.8);
+ scene.add(new THREE.HemisphereLight(0xffe6c7,0x483c30,3));for(const [x,y,z,color,power] of [[-3,4,5,0xffdc9d,5],[4,-1,3,0xfff3dc,3]]){const l=new THREE.DirectionalLight(color,power);l.position.set(x,y,z);scene.add(l);}
+ const group=new THREE.Group();scene.add(group);const gold=new THREE.MeshStandardMaterial({color:0xb98a42,metalness:.72,roughness:.3});const stone=new THREE.MeshStandardMaterial({color:0x423328,metalness:.3,roughness:.38});
+ function oval(x,y,z,sx,sy,sz,mat){const m=new THREE.Mesh(new THREE.SphereGeometry(1,40,24),mat);m.position.set(x,y,z);m.scale.set(sx,sy,sz);group.add(m);}
+ oval(0,-.12,0,.78,1.1,.34,stone);oval(-.36,-.24,.13,.38,.91,.31,gold);oval(.36,-.24,.13,.38,.91,.31,gold);oval(0,.73,.06,.66,.38,.32,gold);oval(0,1.12,.04,.37,.28,.23,stone);
+ function line(points,r=.025){const path=new THREE.CatmullRomCurve3(points.map(p=>new THREE.Vector3(...p)));group.add(new THREE.Mesh(new THREE.TubeGeometry(path,20,r,7,false),gold));}
+ for(const s of [-1,1]){for(const [y,end] of [[.48,.92],[-.05,-.03],[-.59,-1.04]])line([[s*.6,y,0],[s*.96,y-.08,-.05],[s*1.18,end,-.12],[s*1.3,end+.13,-.09]],.048);line([[s*.2,1.22,.05],[s*.32,1.43,.06],[s*.45,1.48,.04]],.033);for(let i=0;i<3;i++)line([[s*.12,-.2-i*.23,.45],[s*.4,-.25-i*.23,.42],[s*.63,-.32-i*.23,.29]],.012);}
+ group.rotation.set(-.28,-.36,-.2);let dragging=false,lastX=0,lastY=0,auto=!matchMedia('(prefers-reduced-motion: reduce)').matches,frame=0,visible=true,last=0;
+ const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('role','img');canvas.setAttribute('aria-label','Decorative three-dimensional scarab. Drag or use arrow keys to rotate.');
+ canvas.onpointerdown=e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId)};canvas.onpointermove=e=>{if(dragging){group.rotation.y+=(e.clientX-lastX)*.009;group.rotation.x+=(e.clientY-lastY)*.009;lastX=e.clientX;lastY=e.clientY}};canvas.onpointerup=canvas.onpointercancel=()=>dragging=false;canvas.onkeydown=e=>{if(e.key.startsWith('Arrow')){e.preventDefault();group.rotation[e.key==='ArrowUp'||e.key==='ArrowDown'?'x':'y']+=(e.key==='ArrowLeft'||e.key==='ArrowUp'?-.15:.15)}};
+ const controls=document.createElement('div');controls.className='sculpture-controls';controls.innerHTML='<button type="button">'+(auto?'Pause motion':'Start motion')+'</button><button type="button">Reset view</button>';host.append(controls);controls.children[0].onclick=()=>{auto=!auto;controls.children[0].textContent=auto?'Pause motion':'Start motion'};controls.children[1].onclick=()=>group.rotation.set(-.28,-.36,-.2);
+ const resize=new ResizeObserver(()=>{const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix()});resize.observe(host);const observer=new IntersectionObserver(e=>visible=e[0].isIntersecting);observer.observe(host);
+ function tick(t){frame=requestAnimationFrame(tick);if(!visible||document.hidden||host.closest('[inert]')||t-last<33)return;last=t;if(auto&&!dragging){group.rotation.y+=.004;group.position.y=Math.sin(t*.0006)*.06;}renderer.render(scene,camera)}frame=requestAnimationFrame(tick);
+ return ()=>{cancelAnimationFrame(frame);resize.disconnect();observer.disconnect();scene.traverse(o=>{o.geometry?.dispose()});gold.dispose();stone.dispose();renderer.dispose();canvas.remove();controls.remove();};
+}
+const mounted=new Map();function sync(){for(const [el,dispose] of mounted)if(!el.isConnected){dispose();mounted.delete(el)}document.querySelectorAll('.sculpture').forEach(el=>{if(!mounted.has(el))mounted.set(el,mountScarab(el))})}new MutationObserver(sync).observe(document.body,{childList:true,subtree:true});sync();
