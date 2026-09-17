@@ -21,6 +21,9 @@ ITI Level 2 Graduation Project · Mariam Wael Elkholey · 2026
 ![Casefile — The Swapped Scarab, Egyptian museum concept artwork](frontend/assets/casefile-cover.png)
 
 > **Three trays. One conflicting record.** An exhibition is about to open at the fictional Lantern Museum in Cairo. The objects and their paperwork disagree. Your task is to discover what happened—and show which sources support your conclusion.
+>
+> <img width="1672" height="941" alt="ChatGPT Image Sep 15, 2026, 10_44_18 PM" src="https://github.com/user-attachments/assets/ed49904b-9592-41f3-870d-9de58e3689f4" />
+
 
 <img align="right" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
 </br>
@@ -35,12 +38,15 @@ The mystery and its characters are fictional. The archaeological reference is re
 
 ## Watch the walkthrough
 
+
 [![Play the Casefile walkthrough](docs/screenshots/opening.png)](docs/casefile-demo.mp4)
+
 
 <img align="right" src="frontend/assets/duck-thinking.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
 </br>
 </br>
 </br>
+
 **[Watch or download the 3:03 captioned demo](docs/casefile-demo.mp4)** — a recorded local walkthrough covering the briefing, a live research response, source inspection, notebook, follow-up evidence and final findings. 
 </br>
 </br>
@@ -66,8 +72,7 @@ The MP4 is included in this repository. Depending on your viewer, the link may d
 **The images below are actual application captures.** Presentation concept art is collected separately further down.
 
 ### Enter the case
-
-![Full-screen opening with interactive 3D scarab](docs/screenshots/opening.png)
+<img width="5088" height="3276" alt="Casefile _ The Swapped Scarab · 4 36pm · 09-15" src="https://github.com/user-attachments/assets/c0c643be-097d-49ef-8483-0e5e1ef2f1c4" />
 
 <details>
 <summary>See the briefing and guided research workspace</summary>
@@ -82,9 +87,16 @@ The MP4 is included in this repository. Depending on your viewer, the link may d
 
 ![Live answer linking tray P to seal 731 with a citation](docs/screenshots/answer.png)
 
-<img align="right" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="100" height="100" hspace="14">
+<img align="right" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="200" height="200" hspace="14">
 
-The assistant's answer is the start of the investigation. Open a cited passage to check the claim against its source.
+</br>
+</br>
+
+The assistant's answer is the start of the investigation.
+</br>
+</br>
+
+Open a cited passage to check the claim against its source.
 
 <br clear="both">
 
@@ -164,14 +176,13 @@ flowchart LR
     A --> UI
 ```
 
-<img align="right" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
-
-The case solution and evaluation answers are not ingested. Locked follow-up documents remain excluded from retrieval, including context-expansion queries.
-
 <br clear="both">
 
 ## Technology
-</br>
+
+<table>
+  <tr>
+    <td width="100%" valign="top">
 
 | Layer | Implementation |
 | --- | --- |
@@ -184,6 +195,8 @@ The case solution and evaluation answers are not ingested. Locked follow-up docu
 | Optional hosted generation | Groq; configured model documented in `.env.example` |
 | Player progress | SQLite with token-based investigation sessions |
 | Verification | pytest/TestClient, retrieval evaluation and reviewed model outputs |
+
+</table>
 
 <br clear="both">
 
@@ -245,9 +258,6 @@ Streamlit reads `frontend/.env`; the custom frontend uses same-origin relative A
 | OLLAMA_HOST | Defaults to http://127.0.0.1:11434 |
 | OLLAMA_MODEL | qwen2.5:1.5b |
 | GENERATION_PROVIDER | ollama by default; optional groq |
-| GROQ_API_KEY | Optional secret stored locally; never commit |
-| GROQ_MODEL | Hosted model selection; see backend/.env.example |
-| FRONTEND_ORIGIN | Allowed CORS origin |
 | API_BASE_URL | Streamlit backend address, from frontend/.env |
 
 <img align="right" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
@@ -284,10 +294,6 @@ Response contains `answer`, `sources`, `evidence` and `mode`. `evidence_only` me
 | POST /unlock | Initial theory of at least 40 characters unlocks E09/E10 |
 | POST /submit | Check structured selections; save written reasoning |
 
-<img align="right" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
-
-The initial-theory gate checks length, not correctness. Final score evaluates structured choices and reference selection; written reasoning is saved for review. Session tokens live in browser local storage. This classroom prototype is not hardened for unrestricted public hosting.
-
 <br clear="both">
 
 ## Quality and evaluation
@@ -300,45 +306,12 @@ The initial-theory gate checks length, not correctness. Final score evaluates st
 | Hosted answer checks | Targeted regressions improved several previously failing answers | Small reviewed sample; not a general accuracy score. |
 | Local model | Retained for the local-model workflow; errors remain documented | Hosted improvements do not establish local-model quality. |
 
-<img align="right" src="frontend/assets/duck-thinking.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
+<br clear="both">
 
-Read the [RAG quality report](docs/RAG_QUALITY_UPDATE.md) and [reviewed local evaluation](evaluation/RESULTS.md) for methodology, failure cases and limits.
 
 <br clear="both">
 
-```bash
-python -m pytest backend/tests -q
-python scripts/evaluate.py
-# Optional live-generation evaluation:
 
-python scripts/evaluate.py --generate
-```
-
-<img align="right" src="frontend/assets/duck-guide.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
-
-Evaluation commands overwrite the current result file; preserve reviewed results first. Citation-ID validation checks that references exist in retrieved context—it does not prove that every claim is supported. An earlier evaluator's authored-answer substitution was removed; historical substituted outputs are not valid live-generation evidence.
-
-<br clear="both">
-
-## Scope and limitations
-
-- This is a classroom prototype with one authored case, not a production authentication or forensic system.
-- Groq requires internet access and account availability. Local Ollama may be slower and less reliable on modest hardware.
-- Model errors, incomplete grounding and rate limits remain possible. Generation failure is surfaced rather than replaced with a prewritten answer.
-- An initial theory of 40 characters unlocks follow-up evidence; this gate checks completion, not correctness.
-- Final structured answers and references are checked against a rubric. Written reasoning is saved for human review.
-- Public deployment and production security hardening are separate from running the local demo.
-
-## Project guide
-
-| Resource | Contents |
-| --- | --- |
-| [Player walkthrough](docs/PLAYER_WALKTHROUGH.md) | Step-by-step playthrough, suggested questions and spoiler-labeled findings. |
-| [Presentation handoff](docs/PRESENTATION_HANDOFF.md) | Slide plan, speaker notes, technical explanations and Q&A. |
-| [Notebook](notebooks/rag_pipeline.ipynb) | Corpus inspection, chunking, embeddings, retrieval and generation workflow. |
-| [Groq setup](docs/GROQ_SETUP.md) | Optional hosted-provider configuration. |
-| [Submission status](docs/SUBMISSION_STATUS.md) | Submission preparation and outstanding checks. |
-| [Checkpoints](docs/checkpoints/) | Development decisions, completed work and remaining tasks. |
 
 ## Structure
 
@@ -350,21 +323,22 @@ frontend/            custom app, Streamlit client, visual assets
 notebooks/           pipeline report
 scripts/             preparation, ingestion, evaluation
 backend/Dockerfile   optional container recipe
-docs/                schema, presentation, walkthrough, checkpoints
 ```
 
-## Docker (optional, not validated here)
+## Docker
 
 Build from the project root after preparing local data:
 ```bash
 docker build -f backend/Dockerfile -t casefile .
 docker run --rm -p 8000:8000 -e OLLAMA_HOST=http://host.docker.internal:11434 casefile
 ```
-The host Ollama service must be reachable from the container. Native local setup is the demonstrated path. Public deployment, clean installation validation and presentation status are tracked separately in docs/SUBMISSION_STATUS.md.
+
 
 ## Credits
 
-<img align="right" src="frontend/assets/duck-thinking.png" alt="Casefile duck guide" width="100" height="100" hspace="14">
+<img align="right" src="frontend/assets/duck-thinking.png" alt="Casefile duck guide" width="300" height="300" hspace="14">
+</br>
+</br>
 
 **Mariam Wael Elkholey** — ITI Level 2 graduation project, 2026.
 
